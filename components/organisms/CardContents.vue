@@ -1,8 +1,17 @@
 <template>
   <div>
-    <draggable :options="options">
-      <div class="item" v-for="item in items" :key="item.id">{{item.name}}</div>
-    </draggable>
+    <div>
+      <h3>GroupA</h3>
+      <draggable v-model="itemsA" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
+        <div class="item" v-for="item in itemsA" :key="item.id">{{item.name}}</div>
+      </draggable>
+    </div>
+    <div>
+      <h3>GroupB</h3>
+      <draggable v-model="itemsB" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
+        <div class="item" v-for="item in itemsB" :key="item.id">{{item.name}}</div>
+      </draggable>
+    </div>
   </div>
 </template>
 
@@ -17,14 +26,24 @@ import draggable from 'vuedraggable'
 })
 
 export default class CardContents extends Vue {
-  animation = 200;
-  items = [
-        { id: 1, name: 'name01' },
-        { id: 2, name: 'name02' },
-        { id: 3, name: 'name03' },
-        { id: 4, name: 'name04' },
-        { id: 5, name: 'name05' }
-      ]
+  options = {
+    group: "myGroup",
+    animation: 200
+  }
+  itemsA = [
+    { id: 1, name: 'name01' },
+    { id: 2, name: 'name02' },
+    { id: 3, name: 'name03' },
+    { id: 4, name: 'name04' },
+    { id: 5, name: 'name05' }
+  ]
+  itemsB = [
+    { id: 6, name: 'name06' },
+    { id: 7, name: 'name07' },
+    { id: 8, name: 'name08' },
+    { id: 9, name: 'name09' },
+    { id: 10, name: 'name10' }
+  ]
 }
 </script>
 
