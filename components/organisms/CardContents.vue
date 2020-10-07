@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-card v-for="(value, name, index) in cardData" :header="name" class="card-width">
-      <b-list-group v-for="item in value">
+    <b-card v-for="(value, name, index) in cardData" :header="name" class="card-width" :key="index">
+      <b-list-group v-for="(item, index) in value" :key="index">
         <draggable v-model="itemsA" group="myGroup" @start="drag=true" @end="drag=false" :options="options">
           <b-list-group-item>{{item.name}}</b-list-group-item>
         </draggable>
