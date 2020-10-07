@@ -1,7 +1,7 @@
 <template>
-  <draggable group="myGroupList" @start="drag=true" @end="drag=false" :options="options" class="list-width">
-    <b-card v-for="(value, name, index) in data" :header="name" class="list-item" :key="index">
-      <Card :data="value" />
+  <draggable v-model="realData" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" class="list-width" @input="emitter">
+    <b-card v-for="(value, index) in realData" :header="value.title" class="list-item" :key="index">
+      <Card v-model="value.data" :data="value.data" />
     </b-card>
   </draggable>
 </template>
@@ -21,9 +21,16 @@ import Card from '~/components/molecules/Card.vue'
 export default class CardList extends Vue {
   @Prop()
   data!: any
+
+  realData = this.data;
+
   options = {
     group: "myGroupList",
     animation: 200
+  }
+
+  emitter(value: any) {
+    this.$emit("input", value);
   }
 }
 </script>

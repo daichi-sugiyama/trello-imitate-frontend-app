@@ -2,8 +2,9 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <div>
-      <CardList :data="data" />
+      <CardList v-model="cardData.data" :data="cardData.data" />
     </div>
+      <br>{{cardData.data}}
   </div>
 </template>
 
@@ -19,7 +20,7 @@ import cardData from '~/assets/card.json'
 })
 
 export default class ListPage extends Vue {
-  data = cardData
+  cardData = cardData
 }
 </script>
 
