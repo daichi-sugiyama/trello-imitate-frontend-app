@@ -2,14 +2,15 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <div>
-      <CardList />
+      <CardList :data="data"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop} from 'nuxt-property-decorator'
+import { Component, Vue} from 'nuxt-property-decorator'
 import CardList from '~/components/organisms/CardList.vue'
+import cardData from '~/assets/card.json'
 
 @Component({
   components: {
@@ -17,6 +18,8 @@ import CardList from '~/components/organisms/CardList.vue'
   }
 })
 
-export default class ListPage extends Vue {}
+export default class ListPage extends Vue {
+  data = cardData
+}
 
 </script>
