@@ -1,7 +1,7 @@
 <template>
   <div>
-    <draggable v-model="realData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter">
-      <b-list-group v-for="(value, index) in realData" :key="index">
+    <draggable v-model="data" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter">
+      <b-list-group v-for="(value, index) in data" :key="index">
         <b-list-group-item v-model="value.name" >{{value.name}}</b-list-group-item>
       </b-list-group>
     </draggable>
@@ -22,8 +22,6 @@ import draggable from 'vuedraggable'
 export default class Card extends Vue {
   @Prop()
   data!: any
-
-  realData = this.data;
 
   options = {
     group: "myGroupCard",
