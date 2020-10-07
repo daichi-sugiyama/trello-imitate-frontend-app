@@ -1,16 +1,16 @@
 <template>
   <div>
-    <CardContents />
+    <CardList />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import CardContents from '~/components/organisms/CardContents.vue'
+import CardList from '~/components/organisms/CardList.vue'
 
 @Component({
   components: {
-    CardContents
+    CardList
   }
 })
 
