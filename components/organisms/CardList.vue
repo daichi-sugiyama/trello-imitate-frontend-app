@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <draggable group="myGroupList" @start="drag=true" @end="drag=false" :options="options" class="row">
-      <b-card v-for="(value, name, index) in data" :header="name" class="card-width" :key="index">
-        <Card :data="value" />
-      </b-card>
-    </draggable>
-  </div>
+  <draggable group="myGroupList" @start="drag=true" @end="drag=false" :options="options" class="list-width">
+    <b-card v-for="(value, name, index) in data" :header="name" class="list-item" :key="index">
+      <Card :data="value" />
+    </b-card>
+  </draggable>
 </template>
 
 <script lang="ts">
@@ -31,7 +29,15 @@ export default class CardList extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .card-width {
-    width: 50%;
+  .list-width {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  .list-item {
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    margin: 0px 5px 0px;
   }
 </style>

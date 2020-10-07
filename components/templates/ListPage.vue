@@ -2,7 +2,7 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <div>
-      <CardList :data="data"/>
+      <CardList :data="data" />
     </div>
   </div>
 </template>
@@ -21,5 +21,7 @@ import cardData from '~/assets/card.json'
 export default class ListPage extends Vue {
   data = cardData
 }
-
 </script>
+
+<style lang="scss" scoped>
+</style>
