@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div v-text="$dayjs('2020-10-10 10:10:10').format('')"></div>
     <ListPage />
   </div>
 </template>
