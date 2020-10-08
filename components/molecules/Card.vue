@@ -3,8 +3,10 @@
     <CardAdd v-model="data" :data="data"/>
     <draggable v-model="data" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter">
       <b-list-group v-for="(value, index) in data" :key="index">
-        <b-list-group-item>{{value.name}}</b-list-group-item>
-        <CardDelete :data="data" :index="index" />
+        <b-list-group-item>
+          {{value.name}}
+          <CardDelete :data="data" :index="index" />
+        </b-list-group-item>
       </b-list-group>
     </draggable>
   </div>
