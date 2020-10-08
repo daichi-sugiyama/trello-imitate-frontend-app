@@ -4,7 +4,7 @@
     <div>
       <CardList v-model="cardData.data" :data="cardData.data" />
     </div>
-      <br>{{cardData.data}}
+      <br>{{ JSON.stringify(cardData.data)}}
   </div>
 </template>
 

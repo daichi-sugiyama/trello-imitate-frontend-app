@@ -1,16 +1,17 @@
 <template>
   <div>
+    <CardAdd v-model="data" :data="data"/>
     <draggable v-model="data" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter">
       <b-list-group v-for="(value, index) in data" :key="index">
-        <b-list-group-item v-model="value.name" >{{value.name}}</b-list-group-item>
+        <b-list-group-item>{{value.name}}</b-list-group-item>
       </b-list-group>
     </draggable>
-    <br>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
+import CardAdd from 'components/atoms/CardAdd.vue'
 import draggable from 'vuedraggable'
 
 @Component({
