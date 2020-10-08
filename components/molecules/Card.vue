@@ -4,6 +4,7 @@
     <draggable v-model="data" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter">
       <b-list-group v-for="(value, index) in data" :key="index">
         <b-list-group-item>{{value.name}}</b-list-group-item>
+        <CardDelete :data="data" :index="index" />
       </b-list-group>
     </draggable>
   </div>
@@ -12,6 +13,7 @@
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import CardAdd from 'components/atoms/CardAdd.vue'
+import CardDelete from 'components/atoms/CardDelete.vue'
 import draggable from 'vuedraggable'
 
 @Component({

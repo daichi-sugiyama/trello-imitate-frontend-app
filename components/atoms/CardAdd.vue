@@ -6,12 +6,9 @@
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
-import draggable from 'vuedraggable'
 
 @Component({
-  components: {
-    draggable
-  }
+  components: {}
 })
 
 export default class CardAdd extends Vue {
