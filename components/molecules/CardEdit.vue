@@ -3,7 +3,7 @@
     <div v-if="isEdit === false" v-on:click="StartEdit">
       <p>{{ value.name }}</p>
     </div>
-    <div v-else>
+    <div v-else v-click-outside="EndEdit">
       <CardEditText :data="data" :value="value" :index="index" />
       <button v-on:click="EndEdit">終了</button>
     </div>
@@ -13,6 +13,8 @@
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import CardEditText from 'components/atoms/CardEditText.vue'
+// tslint:disable-next-line:no-var-requires
+const ClickOutside = require('v-click-outside')
 
 @Component({
   components: {}
