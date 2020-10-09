@@ -14,9 +14,9 @@
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
-import CardAdd from 'components/atoms/CardAdd.vue'
-import CardDelete from 'components/atoms/CardDelete.vue'
-import CardEdit from 'components/atoms/CardEdit.vue'
+import CardAdd from 'components/atoms/CardAddButton.vue'
+import CardDelete from 'components/atoms/CardDeleteButton.vue'
+import CardEdit from 'components/molecules/CardEdit.vue'
 import draggable from 'vuedraggable'
 
 @Component({

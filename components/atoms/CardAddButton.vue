@@ -11,7 +11,7 @@ import { Component, Vue, Prop} from 'nuxt-property-decorator'
   components: {}
 })
 
-export default class CardAdd extends Vue {
+export default class CardAddButton extends Vue {
   @Prop()
   data!: any
 
