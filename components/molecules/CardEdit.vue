@@ -4,7 +4,7 @@
       <p>{{ value.name }}</p>
     </div>
     <div v-else>
-      <input type="text" v-model="value.name">
+      <CardEditText :data="data" :value="value" :index="index" />
       <button v-on:click="EndEdit">終了</button>
     </div>
   </div>
@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
+import CardEditText from 'components/atoms/CardEditText.vue'
 
 @Component({
   components: {}
@@ -36,5 +37,6 @@ export default class CardEdit extends Vue {
   EndEdit() {
     this.isEdit=false
   }
+
 }
 </script>

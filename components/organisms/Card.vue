@@ -1,11 +1,11 @@
 <template>
   <div>
-    <CardAdd v-model="data" :data="data"/>
+    <CardAddButton v-model="data" :data="data"/>
     <draggable v-model="data" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter">
       <b-list-group v-for="(value, index) in data" :key="index">
         <b-list-group-item>
           <CardEdit :data="data" :value="value" :index="index" />
-          <CardDelete :data="data" :index="index" />
+          <CardDeleteButton :data="data" :value="value" :index="index" />
         </b-list-group-item>
       </b-list-group>
     </draggable>
