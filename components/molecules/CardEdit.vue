@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-if="isEdit === false" v-on:click="StartEdit">
+    <div v-if="isEdit === false" v-on:dblclick="StartEdit">
       <p>{{ value.name }}</p>
     </div>
-    <div v-else>
-      <input type="text" v-model="value.name">
+    <div v-else v-click-outside="EndEdit">
+      <CardEditText :data="data" :value="value" :index="index" />
       <button v-on:click="EndEdit">終了</button>
     </div>
   </div>
@@ -12,9 +12,11 @@
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
+import CardEditText from 'components/atoms/CardEditText.vue'
+const ClickOutside = require('vue-click-outside')
 
 @Component({
-  components: {}
+  directives: {ClickOutside}
 })
 
 export default class CardEdit extends Vue {
