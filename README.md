@@ -1,4 +1,4 @@
-# sample_nuxt
+# トレロ風アプリ
 
 ## Build Setup
 
