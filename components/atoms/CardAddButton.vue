@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <button v-on:click="doAdd">追加</button>
-  </div>
+  <v-card-actions>
+    <v-btn @click="doAdd" block text>
+      <v-icon dark>mdi-plus</v-icon>
+      カードを追加
+    </v-btn>
+  </v-card-actions>
 </template>
 
 <script lang="ts">

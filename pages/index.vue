@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <ListPage />
-  </div>
+  <v-app>
+    <v-content class="overflow-x-auto">
+      <ListPage />
+    </v-content>
+  </v-app>
 </template>
 
 <script lang="ts">
