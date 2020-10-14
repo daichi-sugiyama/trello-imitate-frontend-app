@@ -1,15 +1,23 @@
 <template>
-  <draggable v-model="data" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" class="list-width" @input="emitter">
-    <b-card v-for="(value, index) in data" :header="value.title" class="list-item" :key="index">
-      <Card v-model="value.data" :data="value.data" />
-    </b-card>
-  </draggable>
+  <v-container>
+    <draggable v-model="data" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" @input="emitter" tag="v-row" class="flex-nowrap">
+      <v-col v-for="(value, index) in data" :header="value.title" :key="index" cols="3">
+        <v-card color="grey lighten-1">
+          <v-card-title>{{ value.title }}</v-card-title>
+          <v-divider class="mx-4"></v-divider>
+          <Card v-model="value.data" :data="value.data"/>
+          <CardAddButton v-model="value.data" :data="value.data"/>
+        </v-card>
+      </v-col>
+    </draggable>
+  </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import draggable from 'vuedraggable'
 import Card from '~/components/organisms/Card.vue'
+import CardAddButton from '~/components/atoms/CardAddButton.vue'
 
 @Component({
   components: {
@@ -32,17 +40,3 @@ export default class CardList extends Vue {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .list-width {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-  }
-  .list-item {
-    display: inline-block;
-    vertical-align: top;
-    width: 20%;
-    margin: 0px 5px 0px;
-  }
-</style>
