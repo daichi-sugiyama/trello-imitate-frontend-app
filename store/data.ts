@@ -1,15 +1,15 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
-import { listType, cardType } from '~/models/Data'
+import { listType, cardType } from '~/models/DataType'
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
-@Module({ stateFactory: true, namespaced: true, name: 'todos' })
+@Module({ stateFactory: true, namespaced: true, name: 'data' })
 export default class Data extends VuexModule {
   cards: cardType[] = [];
   lists: listType[] = [];
 
   /**
-   * cardを追加する
-   * @param title card
+   * cardを追加
+   * @param title card カードタイトル
    */
   @Mutation
   addCard(title: string) {
@@ -24,11 +24,20 @@ export default class Data extends VuexModule {
   }
 
   /**
-   * cardを削除する
-   * @param title card
+   * cardを削除
+   * @param card
    */
   @Mutation
   removeCard(card: cardType) {
     this.cards.splice(this.cards.indexOf(card), 1)
+  }
+
+  /**
+   * cardを編集
+   * @param card title card カードタイトル
+   */
+  @Mutation
+  updateCard(title: string, card: cardType) {
+    card.cardTitle = title
   }
 }
