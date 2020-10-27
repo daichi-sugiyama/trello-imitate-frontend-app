@@ -2,25 +2,27 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <div>
-      <CardList v-model="cardData.data" :data="cardData.data" />
+      {{data}}
+      <!-- <CardList v-model="data" :data="data" /> -->
     </div>
-      <br>{{ JSON.stringify(cardData.data)}}
+      <br>{{ JSON.stringify(data)}}
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue} from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 import CardList from '~/components/organisms/CardList.vue'
-import cardData from '~/assets/card.json'
+// list の型定義をインポート
+import { listType } from '~/models/DataType'
+// data のストアモジュールをインポート
+import { dataStore } from '~/store'
 
-@Component({
-  components: {
-    CardList
-  }
-})
+@Component({})
 
 export default class ListPage extends Vue {
-  cardData = cardData
+  get data(): Array<listType> {
+    return dataStore.data
+  }
 }
 </script>
 
