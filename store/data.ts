@@ -1,10 +1,11 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
-import { listType, cardType } from '~/models/DataType'
+import { data, listType, cardType } from '~/models/DataType'
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
 export default class Data extends VuexModule {
-  data: listType[] = [];
+  // サンプルデータを読み込み
+  data: listType[] = data;
 
   /**
    * listを追加
