@@ -9,9 +9,9 @@ let dataStore: Data;
  * ストアを初期化する（型推論できるモジュールとして取得する）
  * @param store Vuex.Store
  */
-function initializeStores(store: Store<any>): void {
+function initialiseStores(store: Store<any>): void {
   // Dataを型推論できるストアモジュール化
   dataStore = getModule(Data, store)
 }
 
-export { initializeStores, dataStore }
+export { initialiseStores, dataStore }
