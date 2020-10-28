@@ -36,16 +36,16 @@ export default class Data extends VuexModule {
 
   /**
    * cardを追加
-   * @param title card カードタイトル
+   * @param arg: {title: string, list: listType}
    */
   @Mutation
-  addCard(title: string, list: listType) {
-    const cards: cardType[] = list.cardData;
+  addCard(arg: {title: string, list: listType}) {
+    const cards: cardType[] = arg.list.cardData;
     const card: cardType = {
       // カードがない場合、cardId = 0
       // カードがある場合、cardId = カードの最終要素の id + 1
       cardId: cards.length === 0 ? 0 : cards[cards.length - 1].cardId + 1,
-      cardTitle: title
+      cardTitle: arg.title
     }
     cards.push(card)
   }

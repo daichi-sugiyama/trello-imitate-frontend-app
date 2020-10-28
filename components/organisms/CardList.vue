@@ -6,8 +6,8 @@
       <v-container>
         <draggable v-model="cardData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" tag="v-row">
           <Card v-for="(value, index) in cardData" :key="index" :cardData="value" :propCardData="value.cardData"/>
-          <CardAddButton />
         </draggable>
+          <CardAddButton :listData="listData"/>
       </v-container>
     </v-card>
   </v-col>
