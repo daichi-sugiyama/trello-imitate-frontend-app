@@ -34,7 +34,7 @@ export default class Card extends Vue {
   }
 
   set cardData(items) {
-    dataStore.updateCard(this.propListData, this.propCardData)
+    dataStore.updateCard({list: this.propListData, card: items})
   }
 
   options = {

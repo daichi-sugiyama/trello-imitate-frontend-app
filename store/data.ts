@@ -73,7 +73,7 @@ export default class Data extends VuexModule {
    * @param card title card カードタイトル
    */
   @Mutation
-  updateCard(list: listType, card: cardType[]) {
-    list.cardData = card
+  updateCard(arg: {list: listType, card: cardType[]}) {
+    arg.list.cardData = arg.card
   }
 }
