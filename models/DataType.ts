@@ -10,7 +10,7 @@ export type listType = {
 }
 
 // 動作確認をするためのサンプルデータ
-export const data: listType[] = [
+export const listData: listType[] = [
   {
     listId: 1,
     listTitle: 'リスト1',

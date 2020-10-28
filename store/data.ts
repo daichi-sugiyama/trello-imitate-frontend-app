@@ -1,11 +1,11 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
-import { data, listType, cardType } from '~/models/DataType'
+import { listData, listType, cardType } from '~/models/DataType'
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
 export default class Data extends VuexModule {
   // サンプルデータを読み込み
-  data: listType[] = data;
+  listData: listType[] = listData;
 
   /**
    * listを追加
@@ -13,11 +13,11 @@ export default class Data extends VuexModule {
    */
   @Mutation
   addList(title: string) {
-    const lists: listType[] = this.data;
+    const lists: listType[] = this.listData;
     const list: listType = {
       // リストがない場合、cardId = 0
       // リストがある場合、cardId = リストの最終要素の id + 1
-      listId: this.data.length === 0 ? 0 : this.data[lists.length - 1].listId + 1,
+      listId: this.listData.length === 0 ? 0 : this.listData[lists.length - 1].listId + 1,
       listTitle: title,
       cardData: []
     }
@@ -30,7 +30,7 @@ export default class Data extends VuexModule {
    */
   @Mutation
   removeList(list: listType) {
-    this.data.splice(this.data.indexOf(list), 1)
+    this.listData.splice(this.listData.indexOf(list), 1)
   }
 
 
