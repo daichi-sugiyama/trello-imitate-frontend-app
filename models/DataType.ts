@@ -35,7 +35,7 @@ export const listData: listType[] = [
     cardData: [
       {
         cardId: 21,
-        cardTitle: 'カードタイトル1'
+        cardTitle: 'カードタイトル21'
       },
       {
         cardId: 22,

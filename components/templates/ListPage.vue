@@ -2,7 +2,7 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <div>
-      <CardList v-model="listData" :listData="listData" />
+      <CardList :propData="listData" />
     </div>
       <br>{{ JSON.stringify(listData)}}
   </div>

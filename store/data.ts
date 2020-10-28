@@ -61,11 +61,11 @@ export default class Data extends VuexModule {
 
   /**
    * listを編集
-   * @param list title list リストタイトル
+   * @param list
    */
   @Mutation
-  updateList(title: string, list: listType) {
-    list.listTitle = title
+  updateList(list: listType[]) {
+    this.listData = list
   }
 
   /**
@@ -73,7 +73,7 @@ export default class Data extends VuexModule {
    * @param card title card カードタイトル
    */
   @Mutation
-  updateCard(title: string, card: cardType) {
-    card.cardTitle = title
+  updateCard(list: listType, card: cardType[]) {
+    list.cardData = card
   }
 }
