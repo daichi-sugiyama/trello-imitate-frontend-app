@@ -1,16 +1,16 @@
 <template>
-  <v-container>
-    <draggable v-model="listData" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" tag="v-row" class="flex-nowrap">
-      <v-col v-for="(value, index) in listData" :key="index" cols="3">
-        <v-card color="grey lighten-1">
-          <v-card-title>{{ value.listTitle }}</v-card-title>
-          <v-divider class="mx-4"></v-divider>
-          <Card :propListData="value" :propCardData="value.cardData"/>
-          <CardAddButton :data="value.data"/>
-        </v-card>
-      </v-col>
-    </draggable>
-  </v-container>
+  <v-col cols="3">
+    <v-card color="grey lighten-1">
+      <v-card-title>{{ listData.listTitle }}</v-card-title>
+      <v-divider class="mx-4"></v-divider>
+      <v-container>
+        <draggable v-model="cardData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" tag="v-row">
+          <Card v-for="(value, index) in cardData" :key="index" :cardData="value" :propCardData="value.cardData"/>
+          <CardAddButton />
+        </draggable>
+      </v-container>
+    </v-card>
+  </v-col>
 </template>
 
 <script lang="ts">
@@ -30,14 +30,14 @@ import { dataStore } from '~/store'
 
 export default class CardList extends Vue {
   @Prop()
-  propData!: listType[]
+  listData!: listType
 
-  get listData() {
-    return this.propData
+  get cardData() {
+    return this.listData.cardData
   }
 
-  set listData(items) {
-    dataStore.updateList(items)
+  set cardData(items) {
+    dataStore.updateCard({list: this.listData, card: items})
   }
 
   options = {
