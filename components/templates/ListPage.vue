@@ -2,8 +2,7 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <div>
-      {{listData}}
-      <!-- <CardList v-model="data" :data="data" /> -->
+      <CardList v-model="listData" :listData="listData" />
     </div>
       <br>{{ JSON.stringify(listData)}}
   </div>
@@ -17,7 +16,11 @@ import { listType } from '~/models/DataType'
 // data のストアモジュールをインポート
 import { dataStore } from '~/store'
 
-@Component({})
+@Component({
+  components: {
+    CardList
+  }
+})
 
 export default class ListPage extends Vue {
   get listData(): Array<listType> {

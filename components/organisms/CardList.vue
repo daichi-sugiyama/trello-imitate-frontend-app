@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <draggable v-model="data" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" @input="emitter" tag="v-row" class="flex-nowrap">
-      <v-col v-for="(value, index) in data" :header="value.title" :key="index" cols="3">
+    <draggable v-model="listData" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" @input="emitter" tag="v-row" class="flex-nowrap">
+      <v-col v-for="(value, index) in listData" :key="index" cols="3">
         <v-card color="grey lighten-1">
-          <v-card-title>{{ value.title }}</v-card-title>
+          <v-card-title>{{ value.listTitle }}</v-card-title>
           <v-divider class="mx-4"></v-divider>
-          <Card v-model="value.data" :data="value.data"/>
+          <Card v-model="value.cardData" :cardData="value.cardData"/>
           <CardAddButton v-model="value.data" :data="value.data"/>
         </v-card>
       </v-col>
@@ -18,6 +18,7 @@ import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import draggable from 'vuedraggable'
 import Card from '~/components/organisms/Card.vue'
 import CardAddButton from '~/components/atoms/CardAddButton.vue'
+import { listType } from '~/models/DataType.ts'
 
 @Component({
   components: {
@@ -28,7 +29,7 @@ import CardAddButton from '~/components/atoms/CardAddButton.vue'
 
 export default class CardList extends Vue {
   @Prop()
-  data!: any
+  listData!: listType[]
 
   options = {
     group: "myGroupList",

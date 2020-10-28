@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <draggable v-model="data" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter" tag="v-row">
-      <v-col cols="12" v-for="(value, index) in data" :key="index">
+    <draggable v-model="cardData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" @input="emitter" tag="v-row">
+      <v-col cols="12" v-for="(value, index) in cardData" :key="index">
         <v-card color="grey lighten-4" elevation="5">
-          <v-card-title>{{ value.name }}</v-card-title>
+          <v-card-title>{{ value.cardTitle }}</v-card-title>
         </v-card>
       </v-col>
     </draggable>
@@ -14,6 +14,7 @@
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import CardEdit from 'components/molecules/CardEdit.vue'
 import draggable from 'vuedraggable'
+import { cardType } from '~/models/DataType.ts'
 
 @Component({
   components: {
@@ -23,7 +24,7 @@ import draggable from 'vuedraggable'
 
 export default class Card extends Vue {
   @Prop()
-  data!: any
+  cardData!: cardType[]
 
   options = {
     group: "myGroupCard",
