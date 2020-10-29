@@ -25,6 +25,15 @@ export default class Data extends VuexModule {
   }
 
   /**
+   * listを編集
+   * @param list
+   */
+  @Mutation
+  updateList(list: listType[]) {
+    this.listData = list
+  }
+
+  /**
    * listを削除
    * @param list
    */
@@ -52,20 +61,11 @@ export default class Data extends VuexModule {
 
   /**
    * cardを削除
-   * @param card
+   * @param arg: {list: listType, card: cardType}
    */
   @Mutation
-  removeCard(card: cardType, list: listType) {
-    list.cardData.splice(list.cardData.indexOf(card), 1)
-  }
-
-  /**
-   * listを編集
-   * @param list
-   */
-  @Mutation
-  updateList(list: listType[]) {
-    this.listData = list
+  removeCard(arg: {list: listType, card: cardType}) {
+    arg.list.cardData.splice(arg.list.cardData.indexOf(arg.card), 1)
   }
 
   /**
