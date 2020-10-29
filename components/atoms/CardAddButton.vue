@@ -22,95 +22,39 @@
       <!-- ダイアログ　カード追加フォーム -->
       <v-card>
         <v-card-title>
-          <span class="headline">User Profile</span>
+          <span class="headline">カードを追加</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <v-text-field
-                  label="Legal first name*"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <v-text-field
-                  label="Legal middle name"
-                  hint="example of helper text only on focus"
-                ></v-text-field>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-col>
               <v-col cols="12">
-                <v-text-field
-                  label="Email*"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  label="Password*"
-                  type="password"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
+                <v-form ref="card_add_form">
+                  <v-text-field
+                    v-model="cardTitle"
+                    label="カードタイトル"
+                    :rules="[required]"
+                  ></v-text-field>
+                </v-form>
               </v-col>
             </v-row>
           </v-container>
-          <small>*indicates required field</small>
+          <small>※カードタイトルは必須です</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="blue darken-1"
+            color="red darken-1"
             text
             @click="dialog = false"
           >
-            Close
+            中止
           </v-btn>
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="addCard(cardTitle)"
           >
-            Save
+            保存
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -132,11 +76,28 @@ export default class CardAddButton extends Vue {
   @Prop()
   listData!: listType
 
-  dialog = false
+  cardTitle: string = ''
+  dialog: boolean = false
+  success: boolean = false
+
+  // 必須入力の判定
+  required = (value: any) => !!value || "必ず入力してください"
+
+  // TODO:plugins/ に実装を検討
+  get refs(): any {
+    // eslint-disable-next-line
+    return this.$refs;
+  }
 
   addCard(title: string): void {
-    dataStore.addCard({title: title, list: this.listData})
-    this.dialog = false
+    if(this.refs.card_add_form.validate()) {
+      // <v-form ref="card_add_form"> 内のバリデーションが通過した場合
+      this.success = true
+      dataStore.addCard({title: title, list: this.listData})
+      this.dialog = false
+    } else {
+      this.success = false
+    }
   }
 }
 </script>
