@@ -1,16 +1,16 @@
 <template>
-  <v-container>
-    <draggable v-model="data" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" @input="emitter" tag="v-row" class="flex-nowrap">
-      <v-col v-for="(value, index) in data" :header="value.title" :key="index" cols="3">
-        <v-card color="grey lighten-1">
-          <v-card-title>{{ value.title }}</v-card-title>
-          <v-divider class="mx-4"></v-divider>
-          <Card v-model="value.data" :data="value.data"/>
-          <CardAddButton v-model="value.data" :data="value.data"/>
-        </v-card>
-      </v-col>
-    </draggable>
-  </v-container>
+  <v-col cols="3">
+    <v-card color="grey lighten-1">
+      <v-card-title>{{ listData.listTitle }}</v-card-title>
+      <v-divider class="mx-4"></v-divider>
+      <v-container>
+        <draggable v-model="cardData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" tag="v-row">
+          <Card v-for="(value, index) in cardData" :key="index" :cardData="value" :propCardData="value.cardData"/>
+        </draggable>
+          <CardAddButton :listData="listData"/>
+      </v-container>
+    </v-card>
+  </v-col>
 </template>
 
 <script lang="ts">
@@ -18,6 +18,8 @@ import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import draggable from 'vuedraggable'
 import Card from '~/components/organisms/Card.vue'
 import CardAddButton from '~/components/atoms/CardAddButton.vue'
+import { listType } from '~/models/DataType.ts'
+import { dataStore } from '~/store'
 
 @Component({
   components: {
@@ -28,15 +30,19 @@ import CardAddButton from '~/components/atoms/CardAddButton.vue'
 
 export default class CardList extends Vue {
   @Prop()
-  data!: any
+  listData!: listType
+
+  get cardData() {
+    return this.listData.cardData
+  }
+
+  set cardData(items) {
+    dataStore.updateCard({list: this.listData, card: items})
+  }
 
   options = {
     group: "myGroupList",
     animation: 200
-  }
-
-  emitter(value: any) {
-    this.$emit("input", value);
   }
 }
 </script>
