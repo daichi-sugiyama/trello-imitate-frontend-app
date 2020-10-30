@@ -1,7 +1,10 @@
 <template>
   <v-col cols="3">
     <v-card color="grey lighten-1">
-      <v-card-title>{{ listData.listTitle }}</v-card-title>
+      <v-row>
+        <v-col cols="10" class="ma-0 pa-0"><v-card-title>{{ listData.listTitle }}</v-card-title></v-col>
+        <v-col cols="2" class="block-center__into-vblock"><ListDeleteButton :listData="listData"/></v-col>
+      </v-row>
       <v-divider class="mx-4"></v-divider>
       <v-container>
         <draggable v-model="cardData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" tag="v-row">
@@ -17,6 +20,7 @@
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import draggable from 'vuedraggable'
 import Card from '~/components/organisms/Card.vue'
+import ListDeleteButton from '~/components/atoms/ListDeleteButton.vue'
 import CardAddButton from '~/components/atoms/CardAddButton.vue'
 import { listType } from '~/models/DataType.ts'
 import { dataStore } from '~/store'
@@ -24,6 +28,7 @@ import { dataStore } from '~/store'
 @Component({
   components: {
     Card,
+    ListDeleteButton,
     draggable
   }
 })
@@ -46,3 +51,11 @@ export default class CardList extends Vue {
   }
 }
 </script>
+
+<style lang="scss">
+.block-center__into-vblock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
