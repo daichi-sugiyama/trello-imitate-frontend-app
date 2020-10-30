@@ -8,38 +8,36 @@
       <template v-slot:activator="{ on, attrs }">
         <v-card-actions>
           <v-btn
-            block
             depressed
             color="primary"
-            dark
             v-bind="attrs"
             v-on="on"
           >
             <v-icon dark>mdi-plus</v-icon>
-            カードを追加
+            リストを追加
           </v-btn>
         </v-card-actions>
       </template>
-      <!-- ダイアログ　カード追加フォーム -->
+      <!-- ダイアログ　リスト追加フォーム -->
       <v-card>
         <v-card-title>
-          <span class="headline">カードを追加</span>
+          <span class="headline">リストを追加</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-form ref="card_add_form">
+                <v-form ref="list_add_form">
                   <v-text-field
-                    v-model="cardTitle"
-                    label="カードタイトル"
+                    v-model="listTitle"
+                    label="リストタイトル"
                     :rules="[required]"
                   ></v-text-field>
                 </v-form>
               </v-col>
             </v-row>
           </v-container>
-          <small>※カードタイトルは必須です</small>
+          <small>※リストタイトルは必須です</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -53,7 +51,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="addCard(cardTitle)"
+            @click="addCard(listTitle)"
           >
             保存
           </v-btn>
@@ -61,7 +59,7 @@
       </v-card>
     </v-dialog>
   </div>
-  <!-- /ダイアログ カード追加フォーム -->
+  <!-- /ダイアログ リスト追加フォーム -->
 </template>
 
 <script lang="ts">
@@ -73,11 +71,11 @@ import { dataStore } from '~/store'
   components: {}
 })
 
-export default class CardAddButton extends Vue {
+export default class ListAddButton extends Vue {
   @Prop()
   listData!: listType
 
-  cardTitle: string = ''
+  listTitle: string = ''
   dialog: boolean = false
   success: boolean = false
 
@@ -91,10 +89,10 @@ export default class CardAddButton extends Vue {
   }
 
   addCard(title: string): void {
-    if(this.refs.card_add_form.validate()) {
-      // <v-form ref="card_add_form"> 内のバリデーションが通過した場合
+    if(this.refs.list_add_form.validate()) {
+      // <v-form ref="list_add_form"> 内のバリデーションが通過した場合
       this.success = true
-      dataStore.addCard({title: title, list: this.listData})
+      dataStore.addList(title)
       this.dialog = false
     } else {
       this.success = false
