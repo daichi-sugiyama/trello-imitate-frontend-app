@@ -9,7 +9,8 @@
         <v-card-actions>
           <v-btn
             block
-            text
+            depressed
+            color="primary"
             dark
             v-bind="attrs"
             v-on="on"
