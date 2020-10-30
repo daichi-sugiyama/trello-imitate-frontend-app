@@ -6,12 +6,15 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        color="primary"
+        icon
+        x-small
         dark
+        color="red"
+        class="thumb-up right-btn"
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>mdi-close</v-icon>
+        <v-icon dark small>mdi-minus</v-icon>
       </v-btn>
     </template>
     <v-card>
@@ -59,3 +62,13 @@ export default class CardDeleteButton extends Vue {
   dialog=false
 }
 </script>
+
+<style lang="scss">
+.thumb-up::before {
+  background-color: #ff0000;
+}
+.right-btn {
+  display: block;
+  margin: 0 0 0 auto;
+}
+</style>
