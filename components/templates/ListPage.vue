@@ -2,6 +2,7 @@
   <div>
     <h1>トレロ風アプリ</h1>
     <v-container>
+      <ListAddButton />
       <draggable v-model="listData" group="myGroupList" @start="drag=true" @end="drag=false" :options="options" tag="v-row" class="flex-nowrap">
         <CardList v-for="(value, index) in listData" :key="index" :listData="value" />
       </draggable>
@@ -14,6 +15,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import draggable from 'vuedraggable'
 import CardList from '~/components/organisms/CardList.vue'
+import ListAddButton from '~/components/atoms/ListAddButton.vue'
 // list の型定義をインポート
 import { listType } from '~/models/DataType'
 // data のストアモジュールをインポート
@@ -22,7 +24,8 @@ import { dataStore } from '~/store'
 @Component({
   components: {
     draggable,
-    CardList
+    CardList,
+    ListAddButton
   }
 })
 
