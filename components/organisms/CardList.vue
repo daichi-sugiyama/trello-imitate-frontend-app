@@ -5,7 +5,7 @@
       <v-divider class="mx-4"></v-divider>
       <v-container>
         <draggable v-model="cardData" group="myGroupCard" @start="drag=true" @end="drag=false" :options="options" tag="v-row">
-          <Card v-for="(value, index) in cardData" :key="index" :cardData="value" :propCardData="value.cardData"/>
+          <Card v-for="(value, index) in cardData" :key="index" :listData="listData" :cardData="value"/>
         </draggable>
           <CardAddButton :listData="listData"/>
       </v-container>
