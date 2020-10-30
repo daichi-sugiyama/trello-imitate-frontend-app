@@ -10,7 +10,8 @@
         x-small
         dark
         color="red"
-        class="thumb-up right-btn"
+        class="thumb-up right-btn mr-2"
+        style="top: 5px"
         v-bind="attrs"
         v-on="on"
       >
@@ -18,25 +19,25 @@
       </v-btn>
     </template>
     <v-card>
-      <v-card-title class="headline">
+      <v-card-title class="headline mb-5">
         カードを削除しますか？
       </v-card-title>
       <v-card-text>削除したカードは元に戻せません。</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
-          color="green darken-1"
+          color="blue darken-1"
           text
           @click="dialog = false"
         >
-          Disagree
+          削除しない
         </v-btn>
         <v-btn
-          color="green darken-1"
+          color="red darken-1"
           text
-          @click="dialog = false"
+          @click="deleteCard()"
         >
-          Agree
+          削除する
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -60,6 +61,11 @@ export default class CardDeleteButton extends Vue {
   cardData!: cardType
 
   dialog=false
+
+  deleteCard() {
+    dataStore.deleteCard({list: this.listData, card: this.cardData})
+    this.dialog=false
+  }
 }
 </script>
 
