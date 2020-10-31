@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-card-title v-if="isCardEdit === false" v-on:dblclick="StartEdit">
+    <v-card-title v-if="isCardEdit === false" v-on:dblclick="startCardEdit">
       {{ cardData.cardTitle }}
     </v-card-title>
-    <v-card-title v-else v-click-outside="EndEdit">
+    <v-card-title v-else v-click-outside="endCardEdit">
       <CardEditText :listData="listData" :cardData="cardData" />
-      <button v-on:click="EndEdit">終了</button>
+      <v-btn v-on:click="endCardEdit" color="error">中止</v-btn>
     </v-card-title>
   </div>
 </template>
@@ -29,12 +29,13 @@ export default class CardTitle extends Vue {
 
   isCardEdit=false
 
-  StartEdit() {
+  startCardEdit() {
     this.isCardEdit=true
   }
 
-  EndEdit() {
+  endCardEdit() {
     this.isCardEdit=false
   }
 }
+
 </script>

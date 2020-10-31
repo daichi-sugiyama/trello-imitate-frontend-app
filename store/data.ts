@@ -42,7 +42,6 @@ export default class Data extends VuexModule {
     this.listData = list
   }
 
-
   /**
    * cardを追加
    * @param arg: {title: string, list: listType}
@@ -70,10 +69,17 @@ export default class Data extends VuexModule {
 
   /**
    * cardを編集
-   * @param arg: {list: listType, card: cardType[]}
+   * MEMO: cardParamはカード内のパラメータ
+   * @param arg: {list: listType, card: cardType[], cardParam?: any}
    */
   @Mutation
-  updateCard(arg: {list: listType, card: cardType[]}) {
-    arg.list.cardData = arg.card
+  updateCard(arg: {list: listType, card: cardType[], cardParam?: cardType}) {
+    if (arg.cardParam != undefined) {
+      // @ts-ignore
+      let targetCard = arg.card.find(element => element.cardId === arg.cardParam.cardId);
+      targetCard = arg.cardParam;
+    } else {
+      arg.list.cardData = arg.card
+    }
   }
 }
