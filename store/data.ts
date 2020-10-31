@@ -13,7 +13,8 @@ export default class Data extends VuexModule {
    */
   @Mutation
   addList(title: string) {
-    const lists: listType[] = this.listData;
+    const lists
+    : listType[] = this.listData;
     const list: listType = {
       // リストがない場合、cardId = 0
       // リストがある場合、cardId = リストの最終要素の id + 1
@@ -75,9 +76,12 @@ export default class Data extends VuexModule {
   @Mutation
   updateCard(arg: {list: listType, card: cardType[], cardParam?: cardType}) {
     if (arg.cardParam != undefined) {
-      // @ts-ignore
-      let targetCard = arg.card.find(element => element.cardId === arg.cardParam.cardId);
-      targetCard = arg.cardParam;
+      arg.card.forEach(item => {
+        if(item.cardId === arg.cardParam?.cardId) {
+          item.cardTitle = arg.cardParam.cardTitle
+        }
+      })
+      arg.list.cardData = arg.card
     } else {
       arg.list.cardData = arg.card
     }

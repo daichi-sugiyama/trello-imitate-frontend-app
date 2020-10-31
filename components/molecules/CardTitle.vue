@@ -4,15 +4,14 @@
       {{ cardData.cardTitle }}
     </v-card-title>
     <v-card-title v-else v-click-outside="endCardEdit">
-      <CardEditText :listData="listData" :cardData="cardData" />
-      <v-btn v-on:click="endCardEdit" color="error">中止</v-btn>
+      <CardEditTitle :listData="listData" :cardData="cardData" />
     </v-card-title>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
-import CardEditText from 'components/atoms/CardEditText.vue'
+import CardEditTitle from 'components/atoms/CardEditText.vue'
 import { listType, cardType } from '~/models/DataType.ts'
 const ClickOutside = require('vue-click-outside')
 
