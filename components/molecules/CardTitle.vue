@@ -4,7 +4,7 @@
       {{ cardData.cardTitle }}
     </v-card-title>
     <v-card-title v-else v-click-outside="endCardEdit">
-      <CardEditTitle :listData="listData" :cardData="cardData" />
+      <CardEditTitle :listData="listData" :cardData="cardData" @cardEditTitleClose="endCardEdit" />
     </v-card-title>
   </div>
 </template>

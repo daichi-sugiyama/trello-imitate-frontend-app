@@ -60,6 +60,7 @@ export default class CardEditTitle extends Vue {
         card: this.listData.cardData,
         cardParam: cardParam
       })
+      this.$emit('cardEditTitleClose');
     } else {
       this.success = false
     }
