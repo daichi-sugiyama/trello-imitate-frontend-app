@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <input type="text" v-model="value.name">
-  </div>
+  <input type="text" v-model="cardData.cardTitle">
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
+import { listType, cardType } from '~/models/DataType.ts'
+import { dataStore } from '~/store'
 
 @Component({
   components: {}
@@ -13,13 +13,10 @@ import { Component, Vue, Prop} from 'nuxt-property-decorator'
 
 export default class CardEditText extends Vue {
   @Prop()
-  data!: any
+  listData!: listType
 
   @Prop()
-  value!: any
-
-  @Prop()
-  index!: any
+  cardData!: cardType
 
 }
 </script>
