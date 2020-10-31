@@ -2,14 +2,14 @@
   <v-col cols="12">
     <v-card color="grey lighten-4" elevation="5">
       <CardDeleteButton :listData="listData" :cardData="cardData" />
-      <v-card-title col="7">{{ cardData.cardTitle }}</v-card-title>
+      <CardTitle :listData="listData" :cardData="cardData"/>
     </v-card>
   </v-col>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
-import CardEdit from 'components/molecules/CardEdit.vue'
+import CardTitle from 'components/molecules/CardTitle.vue'
 import CardDeleteButton from 'components/atoms/CardDeleteButton.vue'
 import { listType, cardType } from '~/models/DataType.ts'
 import { dataStore } from '~/store'
