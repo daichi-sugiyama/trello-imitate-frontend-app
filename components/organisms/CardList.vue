@@ -2,7 +2,7 @@
   <v-col cols="3">
     <v-card color="grey lighten-1">
       <v-row>
-        <v-col cols="10" class="ma-0 pa-0"><v-card-title>{{ listData.listTitle }}</v-card-title></v-col>
+        <v-col cols="10" class="ma-0 pa-0"><ListTitle :listData="listData" :cardData="cardData"/></v-col>
         <v-col cols="2" class="block-center__into-vblock"><ListDeleteButton :listData="listData"/></v-col>
       </v-row>
       <v-divider class="mx-4"></v-divider>
@@ -20,6 +20,7 @@
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
 import draggable from 'vuedraggable'
 import Card from '~/components/organisms/Card.vue'
+import ListTitle from '~/components/molecules/ListTitle.vue'
 import ListDeleteButton from '~/components/atoms/ListDeleteButton.vue'
 import CardAddButton from '~/components/atoms/CardAddButton.vue'
 import { listType } from '~/models/DataType.ts'

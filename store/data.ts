@@ -39,8 +39,8 @@ export default class Data extends VuexModule {
    * @param list
    */
   @Mutation
-  updateList(list: listType[]) {
-    this.listData = list
+  updateList(arg {list: listType[], listParam?: listType}) {
+    this.listData = arg.list
   }
 
   /**
