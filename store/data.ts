@@ -1,5 +1,6 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
 import { listData, listType, cardType } from '~/models/DataType'
+import { getData, updateData } from '~/store/apiAccessService'
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
