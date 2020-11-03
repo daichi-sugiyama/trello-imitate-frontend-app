@@ -1,4 +1,16 @@
-# sample_nuxt
+# トレロ風アプリ
+
+## 参考
+・json→tsに変換
+https://qiita.com/bitrinjani/items/d60bdac10e5ced126d1a
+・axios
+https://ma-vericks.com/nuxt-axios/
+・typescript ＋ vuex
+https://toragramming.com/programming/nuxt-js/nuxt-typescript-vuex-todo-tutorial/
+
+## 説明
+・TODO
+・APIを別途実装
 
 ## Build Setup
 
