@@ -39,8 +39,15 @@ export default class Data extends VuexModule {
    * @param list
    */
   @Mutation
-  updateList(list: listType[]) {
-    this.listData = list
+  updateList(arg: {list: listType[], listParam?: listType}) {
+    if (arg.listParam != undefined) {
+      arg.list.forEach(item => {
+        if(item.listId === arg.listParam?.listId) {
+          item.listTitle = arg.listParam.listTitle
+        }
+      })
+    }
+    this.listData = arg.list
   }
 
   /**
@@ -81,9 +88,7 @@ export default class Data extends VuexModule {
           item.cardTitle = arg.cardParam.cardTitle
         }
       })
-      arg.list.cardData = arg.card
-    } else {
-      arg.list.cardData = arg.card
     }
+    arg.list.cardData = arg.card
   }
 }
