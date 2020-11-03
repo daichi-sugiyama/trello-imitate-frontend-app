@@ -4,7 +4,10 @@ import { listData, listType, cardType } from '~/models/DataType'
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
 export default class Data extends VuexModule {
-  // サンプルデータを読み込み
+  /**
+   * サンプルデータを読み込み
+   * TODO:いずれはlaravelから値を取得する
+   */
   listData: listType[] = listData;
 
   /**
@@ -36,6 +39,7 @@ export default class Data extends VuexModule {
 
   /**
    * listを編集
+   * MEMO: cardParamはカード内のパラメータ
    * @param list
    */
   @Mutation
