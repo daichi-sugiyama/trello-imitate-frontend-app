@@ -7,6 +7,7 @@
       v-model="listTitle"
       label="リストタイトル"
       :rules="[required]"
+      autofocus
     ></v-text-field>
     <v-btn
       color="info"

@@ -7,6 +7,7 @@
       v-model="cardTitle"
       label="カードタイトル"
       :rules="[required]"
+      autofocus
     ></v-text-field>
     <v-btn
       color="info"
