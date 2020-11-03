@@ -43,10 +43,10 @@ export default class CardEditTitle extends Vue {
   }
 
   listTitleUpdate(title: string) {
-    if(this.refs.card_edit_title_form.validate()) {
-      // <v-form ref="card_edit_title_form"> 内のバリデーションが通過した場合
+    if(this.refs.list_edit_title_form.validate()) {
+      // <v-form ref="list_edit_title_form"> 内のバリデーションが通過した場合
       this.success = true
-      // カード更新用のパラメータを作成
+      // リスト更新用のパラメータを作成
       let listParam: listType = {
         listId: this.listData.listId,
         listTitle: title,
@@ -54,10 +54,10 @@ export default class CardEditTitle extends Vue {
       }
       // リストを更新
       dataStore.updateList({
-        list: this.listData,
+        list: dataStore.listData,
         listParam: listParam
       })
-      this.$emit('cardEditTitleClose');
+      this.$emit('listEditTitleClose');
     } else {
       this.success = false
     }
