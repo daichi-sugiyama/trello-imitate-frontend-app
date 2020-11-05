@@ -38,6 +38,10 @@ export default class ListPage extends Vue {
     dataStore.updateList({list: items})
   }
 
+  mounted() {
+    dataStore.getData()
+  }
+
   options = {
     group: "myGroupList",
     animation: 200

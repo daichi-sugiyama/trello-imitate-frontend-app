@@ -1,6 +1,10 @@
-import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
+import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+import { $axios } from '~/utils/api'
 import { jsonData, listType, cardType } from '~/models/DataType'
-import { getData, updateData } from '~/store/apiAccessService'
+
+// TODO:apiのurl
+const url: string = ''
+const token: string = ''
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
@@ -9,7 +13,18 @@ export default class Data extends VuexModule {
    * サンプルデータを読み込み
    * TODO:いずれはlaravelから値を取得する
    */
-  listData: listType[] = jsonData;
+  listData: listType[] = [
+    {
+      "listId": 1,
+      "listTitle": "リスト1",
+      "cardData": [
+        {
+          "cardId": 11,
+          "cardTitle": "カードタイトル11"
+        }
+      ]
+    }
+  ];
 
   /**
    * listを追加
@@ -95,5 +110,22 @@ export default class Data extends VuexModule {
       })
     }
     arg.list.cardData = arg.card
+  }
+
+  /**
+   * APIからjsonデータを取得
+   */
+  @Action({})
+  async getData() {
+    let res = await $axios.get(url);
+    this.updateList({list: jsonData})
+  }
+
+  /**
+   * apiにデータを更新
+   */
+  @Action({})
+  updateData(list: listType) {
+    let res = $axios.post(url);
   }
 }
