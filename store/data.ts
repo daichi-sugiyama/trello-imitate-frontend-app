@@ -1,5 +1,5 @@
 import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
-import { listData, listType, cardType } from '~/models/DataType'
+import { jsonData, listType, cardType } from '~/models/DataType'
 import { getData, updateData } from '~/store/apiAccessService'
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
@@ -9,7 +9,7 @@ export default class Data extends VuexModule {
    * サンプルデータを読み込み
    * TODO:いずれはlaravelから値を取得する
    */
-  listData: listType[] = listData;
+  listData: listType[] = jsonData;
 
   /**
    * listを追加

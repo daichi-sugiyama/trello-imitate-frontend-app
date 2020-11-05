@@ -35,7 +35,7 @@ export default class ListPage extends Vue {
   }
 
   set listData(items) {
-    dataStore.updateList(items)
+    dataStore.updateList({list: items})
   }
 
   options = {
