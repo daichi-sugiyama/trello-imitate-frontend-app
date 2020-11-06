@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop} from 'nuxt-property-decorator'
-import CardEditTitle from 'components/atoms/CardEditText.vue'
+import CardEditTitle from '~/components/atoms/CardEditTitle.vue'
 import { listType, cardType } from '~/models/DataType.ts'
 const ClickOutside = require('vue-click-outside')
 

@@ -1,11 +1,18 @@
-import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
-import { listData, listType, cardType } from '~/models/DataType'
+import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
+import { $axios } from '~/utils/api'
+import { jsonData, listType, cardType } from '~/models/DataType'
+
+// TODO:apiのurl
+const url: string = ''
+const token: string = ''
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
 export default class Data extends VuexModule {
-  // サンプルデータを読み込み
-  listData: listType[] = listData;
+  /**
+   * サンプルデータを読み込み
+   */
+  listData: listType[] = [];
 
   /**
    * listを追加
@@ -36,6 +43,7 @@ export default class Data extends VuexModule {
 
   /**
    * listを編集
+   * MEMO: cardParamはカード内のパラメータ
    * @param list
    */
   @Mutation
@@ -90,5 +98,22 @@ export default class Data extends VuexModule {
       })
     }
     arg.list.cardData = arg.card
+  }
+
+  /**
+   * APIからjsonデータを取得
+   */
+  @Action({})
+  async getData() {
+    let res = await $axios.get(url);
+    this.updateList({list: jsonData})
+  }
+
+  /**
+   * APIにデータを更新
+   */
+  @Action({})
+  async updateData(list: listType) {
+    let res = await $axios.post(url);
   }
 }
