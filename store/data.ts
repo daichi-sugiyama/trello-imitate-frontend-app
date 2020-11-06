@@ -11,7 +11,6 @@ const token: string = ''
 export default class Data extends VuexModule {
   /**
    * サンプルデータを読み込み
-   * TODO:いずれはlaravelから値を取得する
    */
   listData: listType[] = [];
 
@@ -111,10 +110,10 @@ export default class Data extends VuexModule {
   }
 
   /**
-   * apiにデータを更新
+   * APIにデータを更新
    */
   @Action({})
-  updateData(list: listType) {
-    let res = $axios.post(url);
+  async updateData(list: listType) {
+    let res = await $axios.post(url);
   }
 }

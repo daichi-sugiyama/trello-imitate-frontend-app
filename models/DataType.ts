@@ -9,7 +9,7 @@ export type listType = {
   cardData: cardType[]
 }
 
-// 動作確認をするためのサンプルデータ
+// TODO:動作確認をするためのサンプルデータ
 export const jsonData = [
   {
       "listId": 1,
