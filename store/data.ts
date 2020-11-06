@@ -13,18 +13,7 @@ export default class Data extends VuexModule {
    * サンプルデータを読み込み
    * TODO:いずれはlaravelから値を取得する
    */
-  listData: listType[] = [
-    {
-      "listId": 1,
-      "listTitle": "リスト1",
-      "cardData": [
-        {
-          "cardId": 11,
-          "cardTitle": "カードタイトル11"
-        }
-      ]
-    }
-  ];
+  listData: listType[] = [];
 
   /**
    * listを追加
