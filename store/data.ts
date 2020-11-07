@@ -1,9 +1,9 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { $axios } from '~/utils/api'
-import { jsonData, listType, cardType } from '~/models/DataType'
+import { listType, cardType } from '~/models/DataType'
 
-// TODO:apiのurl
-const url: string = ''
+// TODO:暫定のapiのurl
+const url: string = 'http://127.0.0.1:8000/api/list'
 const token: string = ''
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
@@ -105,8 +105,12 @@ export default class Data extends VuexModule {
    */
   @Action({})
   async getData() {
-    let res = await $axios.get(url);
-    this.updateList({list: jsonData})
+    try {
+      let res = await $axios.get(url);
+      this.updateList({list: res.data});
+    } catch(e) {
+      console.log("json取得時にエラー："+e)
+    }
   }
 
   /**
@@ -114,6 +118,10 @@ export default class Data extends VuexModule {
    */
   @Action({})
   async updateData(list: listType) {
-    let res = await $axios.post(url);
+    try {
+      let res = await $axios.post(url);
+    } catch(e) {
+      console.log("json更新時にエラー："+e)
+    }
   }
 }
