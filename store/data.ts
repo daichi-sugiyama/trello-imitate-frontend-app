@@ -5,14 +5,31 @@ import { listType, cardType } from '~/models/DataType'
 // TODO:暫定のapiのurl
 const url: string = 'http://127.0.0.1:8000/api/list'
 const token: string = ''
+//APIにデータを更新
+const updateData = (list: listType[]) => {
+  try {
+    let res = $axios.post(url, list);
+    console.log(res)
+  } catch(e) {
+    console.log("json更新時にエラー："+e)
+  }
+}
 
 // stateFactory: true → Vuex をモジュールモードで扱うために指定
 @Module({ stateFactory: true, namespaced: true, name: 'data' })
 export default class Data extends VuexModule {
-  /**
-   * サンプルデータを読み込み
-   */
+
   listData: listType[] = [];
+
+  /**
+   * APIから取得したlistをセット
+   * @param jsonData
+   */
+  @Mutation
+  setList(jsonData: any) {
+    // TODO:型チェックを行いたい
+    this.listData = jsonData
+  }
 
   /**
    * listを追加
@@ -113,20 +130,9 @@ export default class Data extends VuexModule {
   async getData() {
     try {
       let res = await $axios.get(url);
-      this.updateList({list: res.data});
+      this.setList(res.data);
     } catch(e) {
       console.log("json取得時にエラー："+e)
     }
   }
 }
-
-  /**
-   * APIにデータを更新
-   */
-  function updateData(list: listType[]) {
-    try {
-      let res = $axios.post(url, list);
-    } catch(e) {
-      console.log("json更新時にエラー："+e)
-    }
-  }
