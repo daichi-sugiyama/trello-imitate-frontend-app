@@ -30,6 +30,7 @@ export default class Data extends VuexModule {
       cardData: []
     }
     lists.push(list)
+    updateData(this.listData);
   }
 
   /**
@@ -39,6 +40,7 @@ export default class Data extends VuexModule {
   @Mutation
   deleteList(list: listType) {
     this.listData.splice(this.listData.indexOf(list), 1)
+    updateData(this.listData);
   }
 
   /**
@@ -56,6 +58,7 @@ export default class Data extends VuexModule {
       })
     }
     this.listData = arg.list
+    updateData(this.listData);
   }
 
   /**
@@ -72,6 +75,7 @@ export default class Data extends VuexModule {
       cardTitle: arg.title
     }
     cards.push(card)
+    updateData(this.listData);
   }
 
   /**
@@ -81,6 +85,7 @@ export default class Data extends VuexModule {
   @Mutation
   deleteCard(arg: {list: listType, card: cardType}) {
     arg.list.cardData.splice(arg.list.cardData.indexOf(arg.card), 1)
+    updateData(this.listData);
   }
 
   /**
@@ -98,6 +103,7 @@ export default class Data extends VuexModule {
       })
     }
     arg.list.cardData = arg.card
+    updateData(this.listData);
   }
 
   /**
@@ -112,16 +118,15 @@ export default class Data extends VuexModule {
       console.log("json取得時にエラー："+e)
     }
   }
+}
 
   /**
    * APIにデータを更新
    */
-  @Action({})
-  async updateData(list: listType) {
+  function updateData(list: listType[]) {
     try {
-      let res = await $axios.post(url);
+      let res = $axios.post(url, list);
     } catch(e) {
       console.log("json更新時にエラー："+e)
     }
   }
-}
